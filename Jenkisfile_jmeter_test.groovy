@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Starting task') {
             steps {
-                bash
+                sh
 				'''
 				 timeout 60 /opt/jmeter/bin/jmeter.sh -n -t /opt/jmeter/jmeter_kafka_files/TH_APP_th-cef_1.7_9092_3.2_GZIP.jmx
 				'''
