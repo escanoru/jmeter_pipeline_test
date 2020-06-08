@@ -17,7 +17,7 @@ pipeline {
         stage('Executing Jmeter Test') {
             steps {
                 sh '''
-				 timeout 60 /opt/jmeter/bin/jmeter.sh -n -t /opt/jmeter/jmeter_kafka_files/TH_APP_th-cef_1.7_9092_3.2_GZIP_TIME.jmx
+				 time /opt/jmeter/bin/jmeter.sh -n -t /opt/jmeter/jmeter_kafka_files/TH_APP_th-cef_1.7_9092_3.2_GZIP_TIME.jmx
 				 echo $?
 				'''
             }
