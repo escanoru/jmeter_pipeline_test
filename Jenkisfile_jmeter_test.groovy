@@ -29,4 +29,5 @@ pipeline {
             echo 'Clenning up the workspace'
             deleteDir() 
         }
+	}	
 }
