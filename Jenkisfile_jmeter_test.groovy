@@ -23,4 +23,10 @@ pipeline {
             }
         }
     }
+	
+    post {
+        always {
+            echo 'Clenning up the workspace'
+            deleteDir() 
+        }
 }
