@@ -5,6 +5,53 @@ def setDescription() {
   }
 setDescription()
 
+// Functions
+def jmeter_command() {
+    /opt/jmeter/bin/jmeter.sh -n -t /opt/jmeter/jmeter_kafka_files/TH_APP_th-cef_1.7_9092_3.2_GZIP_TIME.jmx
+}
+
+jmeter_instances_1 = [
+    "task1": {
+        jmeter_command()
+    }
+]
+
+jmeter_instances_2 = [
+    "task1": {
+        jmeter_command()
+    },
+	"task2": {
+        jmeter_command()
+    }
+]
+
+jmeter_instances_3 = [
+    "task1": {
+        jmeter_command()
+    },
+	"task2": {
+        jmeter_command()
+    },
+	"task3": {
+        jmeter_command()
+    }
+]
+
+jmeter_instances_4 = [
+    "task1": {
+        jmeter_command()
+    },
+	"task2": {
+        jmeter_command()
+    },
+	"task3": {
+        jmeter_command()
+    },
+	"task4": {
+        jmeter_command()
+    }
+]
+
 // Declarative //
 pipeline {
 	agent { label 'jmeter_slave' }
@@ -53,9 +100,9 @@ pipeline {
         }		
         stage('Executing Jmeter Test') {
             steps {
-                sh '''
-				 time /opt/jmeter/bin/jmeter.sh -n -t /opt/jmeter/jmeter_kafka_files/TH_APP_th-cef_1.7_9092_3.2_GZIP_TIME.jmx
-				'''
+			  script {
+                    parallel(jmeter_instances_1)
+                }
             }
         }
     }
