@@ -15,13 +15,13 @@ pipeline {
   parameters {
         string(
 		name: 'Broker_Nodes',
-		defaultValue: 'ip:32092,ip:32092',
-		description: '<h4>Kafka Broker nodes, for this case the port 32092 mus be used</h4>'
+		defaultValue: '15.214.',
+		description: '<h4>Kafka Broker nodes ip separated by comma, e.g 15.214.x.x, 15.214.x.x, 15.214.x.x, 15.214.x.x</h4>'
 		)
         string(
 		name: 'Zookeeper_Nodes', 
-		defaultValue: 'ip:2181,ip:2181', 
-		description: '<h4>Zookeeper_Nodes</h4>'
+		defaultValue: '15.214.', 
+		description: '<h4>Kafka Broker nodes ip separated by comma, e.g 15.214.x.x, 15.214.x.x, 15.214.x.x, 15.214.x.x</h4>'
 		)
         string(
 		name: 'Topic', 
@@ -44,10 +44,10 @@ pipeline {
         stage('Setting Parameters') {
             steps {
                 sh '''
-				 sed -i \"s/BROKER_NODES/${Broker_Nodes}/\" ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
-				 sed -i \"s/ZOOKEEPER_NODES/${Zookeeper_Nodes}/\" ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
-				 sed -i \"s/TOPIC_NAME/${Topic}/\" ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
-				 sed -i \"s/TIMER_S/${Duration}/\" ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
+				  sed -i "s/BROKER_NODES/$(echo "${Broker_Nodes}" | tr "," "\n" | awk '{print $1":32092"}' | paste -sd ",")/" ${WORKSPACE}/in_test.jmx
+				  sed -i "s/ZOOKEEPER_NODES/$(echo "${Zookeeper_Nodes}" | tr "," "\n" | awk '{print $1":2181"}' | paste -sd ",")/" ${WORKSPACE}/in_test.jmx
+				  sed -i \"s/TOPIC_NAME/${Topic}/\" ${WORKSPACE}/in_test.jmx
+				  sed -i \"s/TIMER_S/${Duration}/\" ${WORKSPACE}/in_test.jmx
 				'''
             }
         }		
