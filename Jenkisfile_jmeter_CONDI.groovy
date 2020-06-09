@@ -28,7 +28,6 @@ jmeter_instances_2 = [
     }
 ]
 
-]
 // Declarative //
 pipeline {
 	agent { label 'jmeter_slave' }
