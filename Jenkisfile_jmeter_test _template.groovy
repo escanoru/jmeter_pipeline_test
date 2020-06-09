@@ -34,8 +34,8 @@ pipeline {
         stage('Configuring jmeter_kafka Template File') {
             steps {
                 sh '''
-				 sed -i \'s/broker_nodes/${Broker_Nodes}\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
-				 sed -i \'s/zookeeper_nodes/${Zookeeper_Nodes}\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
+				 sed -i \'s/broker_nodes/${Broker_Nodes}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
+				 sed -i \'s/zookeeper_nodes/${Zookeeper_Nodes}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
 				 echo $?
 				'''
             }
