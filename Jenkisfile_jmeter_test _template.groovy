@@ -43,9 +43,9 @@ pipeline {
     stages {
         stage('Setting Parameters') {
             steps {
-              sed -i \\'s/BROKER_NODES/${params.Broker_Nodes}/\\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
-			  sed -i \\'s/ZOOKEEPER_NODES/${params.Zookeeper_Nodes}/\\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
-		      sed -i \\'s/TOPIC_NAME/${params.Topic}/\\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
+              sed -i "s/BROKER_NODES/${params.Broker_Nodes}/\\" ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
+			  sed -i "s/ZOOKEEPER_NODES/${params.Zookeeper_Nodes}/" ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
+		      sed -i "s/TOPIC_NAME/${params.Topic}/" ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
 				
             }
         }		
