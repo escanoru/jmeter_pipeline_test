@@ -36,7 +36,7 @@ pipeline {
         string(
 		name: 'Threads', 
 		defaultValue: '1', 
-		description: '<h4>1 threads generates around 10k/h4>'
+		description: '<h4>1 thread generates around 10k</h4>'
 		)			
     }
 	
@@ -69,7 +69,7 @@ pipeline {
 				'''
             }
         }		
-        stage('Setting Test Duration') {
+        stage('Setting Duration Test') {
             steps {
                 sh '''
 				 sed -i \'s/TIMER_S/${Duration}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
