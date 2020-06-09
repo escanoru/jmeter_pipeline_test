@@ -35,10 +35,10 @@ pipeline {
 		)
         choice(
 		name: 'Instances',
-		choices: [1, 2, 3, 4]
+		choices: [1, 2, 3, 4],
 		defaultValue: '1',
 		description: '<h4>1 thread generates around 25k</h4>'
-		)			
+		)	
     }
 	
     stages {
