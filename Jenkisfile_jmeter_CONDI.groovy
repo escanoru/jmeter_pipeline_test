@@ -59,7 +59,7 @@ pipeline {
         choice(
 		name: 'Instances',
 		choices: ['1', '2'],
-		description: '<h4>Instance per node. Each instance generates around 10K (This depends on the node where the task is executed)</h4>'
+		description: '<h4>Instance per node. Each instance generates around 12K (This depends on the node where the task is executed)</h4>'
 		)	
     }
 	
