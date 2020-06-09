@@ -5,6 +5,30 @@ def setDescription() {
   }
 setDescription()
 
+
+// Functions
+def jmeter_command() {
+    sh '''
+	/opt/jmeter/bin/jmeter.sh -n -t ${WORKSPACE}/Jmeter_Pepperbox_Template_1.8_KB_message.jmx
+	'''
+}
+
+jmeter_instances_1 = [
+    "task1": {
+        jmeter_command()
+    }
+]
+
+jmeter_instances_2 = [
+    "task1": {
+        jmeter_command()
+    },
+	"task2": {
+        jmeter_command()
+    }
+]
+
+]
 // Declarative //
 pipeline {
 	agent { label 'jmeter_slave' }
@@ -35,7 +59,7 @@ pipeline {
 		)
         choice(
 		name: 'Instances',
-		choices: ['1', '2', '3', '4'],
+		choices: ['1', '2'],
 		description: '<h4>Instance per node. Each instance generates around 10K (This depends on the node where the task is executed)</h4>'
 		)	
     }
@@ -52,10 +76,14 @@ pipeline {
             }
         }		
         stage('Executing Jmeter Test') {
+            when {
+                // Only say hello if a "greeting" is requested
+                expression { params.Instances == '1' }
+            }		
             steps {
-                sh '''
-				 time /opt/jmeter/bin/jmeter.sh -n -t ${WORKSPACE}/Jmeter_Pepperbox_Template_1.8_KB_message.jmx
-				'''
+			  script {
+                    parallel(jmeter_instances_1)
+                }
             }
         }
     }
