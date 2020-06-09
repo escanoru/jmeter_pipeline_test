@@ -16,7 +16,7 @@ pipeline {
         string(
 		name: 'Broker_Nodes',
 		defaultValue: 'ip:32092,ip:32092',
-		description: '<h4>Kafka Broker nodes/h4>'
+		description: '<h4>Kafka Broker nodes, for this case the port 32092 mus be used</h4>'
 		)
         string(
 		name: 'Zookeeper_Nodes', 
@@ -28,6 +28,16 @@ pipeline {
 		defaultValue: 'th-cef', 
 		description: '<h4>Target topic where the events will be sent</h4>'
 		)
+        string(
+		name: 'Duration', 
+		defaultValue: '60', 
+		description: '<h4>Duration of test in seconds</h4>'
+		)
+        string(
+		name: 'Threads', 
+		defaultValue: '1', 
+		description: '<h4>1 threads generates around 10k/h4>'
+		)			
     }
 	
     stages {
