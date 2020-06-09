@@ -54,7 +54,7 @@ pipeline {
         stage('Executing Jmeter Test') {
             steps {
                 sh '''
-				 time /opt/jmeter/bin/jmeter.sh -n -t ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
+				 time /opt/jmeter/bin/jmeter.sh -n -t ${WORKSPACE}/in_test.jmx
 				'''
             }
         }
