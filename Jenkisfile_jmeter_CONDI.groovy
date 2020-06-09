@@ -74,7 +74,7 @@ pipeline {
 				'''
             }
         }		
-        stage('Executing Jmeter Test') {
+        stage('Executing Jmeter Test(1 Instance)') {
             when {
                 // Only say hello if a "greeting" is requested
                 expression { params.Instances == '1' }
@@ -85,7 +85,7 @@ pipeline {
                 }
             }
         }
-        stage('Executing Jmeter Test') {
+        stage('Executing Jmeter Test(2 Instanced)') {
             when {
                 // Only say hello if a "greeting" is requested
                 expression { params.Instances == '2' }
