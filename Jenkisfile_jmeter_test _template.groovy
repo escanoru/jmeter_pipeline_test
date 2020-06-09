@@ -9,7 +9,7 @@ setDescription()
 pipeline {
 	agent { label 'jmeter_slave' }
 	options {
-		ansiColor('gnome-terminal')
+		ansiColor('xterm')
 		buildDiscarder(logRotator(daysToKeepStr: '180'))
 		}
   parameters {
@@ -37,7 +37,7 @@ pipeline {
 		name: 'Instances',
 		choices: [1, 2, 3, 4]
 		defaultValue: '1',
-		description: '<h4>1 thread generates around 10k</h4>'
+		description: '<h4>1 thread generates around 25k</h4>'
 		)			
     }
 	
