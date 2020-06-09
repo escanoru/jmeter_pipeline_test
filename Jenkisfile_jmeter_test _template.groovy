@@ -33,39 +33,21 @@ pipeline {
 		defaultValue: '60', 
 		description: '<h4>Duration of test in seconds</h4>'
 		)
-        string(
-		name: 'Threads', 
-		defaultValue: '1', 
+        choice(
+		name: 'Instances',
+		choices: [1, 2, 3, 4]
+		defaultValue: '1',
 		description: '<h4>1 thread generates around 10k</h4>'
 		)			
     }
 	
     stages {
-        stage('Setting Nodes') {
+        stage('Setting Parameters') {
             steps {
                 sh '''
 				 sed -i \'s/BROKER_NODES/${Broker_Nodes}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
 				 sed -i \'s/ZOOKEEPER_NODES/${Zookeeper_Nodes}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
-				'''
-            }
-        }
-        stage('Setting Topic') {
-            steps {
-                sh '''
 				 sed -i \'s/TOPIC_NAME/${Topic}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
-				'''
-            }
-        }
-        stage('Setting Threads') {
-            steps {
-                sh '''
-				 sed -i \'s/THREAD_NUM/${Threads}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
-				'''
-            }
-        }		
-        stage('Setting Duration Test') {
-            steps {
-                sh '''
 				 sed -i \'s/TIMER_S/${Duration}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
 				'''
             }
@@ -76,7 +58,7 @@ pipeline {
 				 time /opt/jmeter/bin/jmeter.sh -n -t /opt/jmeter/jmeter_kafka_files/TH_APP_th-cef_1.7_9092_3.2_GZIP_TIME.jmx
 				'''
             }
-        }		
+        }
     }
 	
     post {
