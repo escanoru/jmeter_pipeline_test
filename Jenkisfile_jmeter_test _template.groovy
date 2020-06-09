@@ -59,14 +59,14 @@ pipeline {
         stage('Setting Threads') {
             steps {
                 sh '''
-				 sed -i \'s/THREAD_NUM/${Duration}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
+				 sed -i \'s/THREAD_NUM/${Threads}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
 				'''
             }
         }		
         stage('Setting Duration Test') {
             steps {
                 sh '''
-				 sed -i \'s/TIMER_S/${Threads}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
+				 sed -i \'s/TIMER_S/${Duration}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
 				'''
             }
         }		
