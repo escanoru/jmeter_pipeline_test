@@ -44,10 +44,10 @@ pipeline {
         stage('Setting Parameters') {
             steps {
                 sh '''
-				  sed -i "s/BROKER_NODES/$(echo "${Broker_Nodes}" | tr "," "\n" | awk '{print $1":32092"}' | paste -sd ",")/" ${WORKSPACE}/in_test.jmx
-				  sed -i "s/ZOOKEEPER_NODES/$(echo "${Zookeeper_Nodes}" | tr "," "\n" | awk '{print $1":2181"}' | paste -sd ",")/" ${WORKSPACE}/in_test.jmx
-				  sed -i \"s/TOPIC_NAME/${Topic}/\" ${WORKSPACE}/in_test.jmx
-				  sed -i \"s/TIMER_S/${Duration}/\" ${WORKSPACE}/in_test.jmx
+				  sed -i "s/BROKER_NODES/$(echo "${Broker_Nodes}" | tr "," "\n" | awk '{print $1":32092"}' | paste -sd ",")/" ${WORKSPACE}/Jmeter_Pepperbox_Template_1.8_KB_message
+				  sed -i "s/ZOOKEEPER_NODES/$(echo "${Zookeeper_Nodes}" | tr "," "\n" | awk '{print $1":2181"}' | paste -sd ",")/" ${WORKSPACE}/Jmeter_Pepperbox_Template_1.8_KB_message
+				  sed -i \"s/TOPIC_NAME/${Topic}/\" ${WORKSPACE}/Jmeter_Pepperbox_Template_1.8_KB_message
+				  sed -i \"s/TIMER_S/${Duration}/\" ${WORKSPACE}/Jmeter_Pepperbox_Template_1.8_KB_message
 				'''
             }
         }		
