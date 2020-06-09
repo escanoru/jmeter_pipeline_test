@@ -41,20 +41,45 @@ pipeline {
     }
 	
     stages {
-        stage('Configuring jmeter_kafka Template File') {
+        stage('Setting Broker Nodes') {
             steps {
                 sh '''
-				 sed -i \'s/broker_nodes/${Broker_Nodes}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
-				 sed -i \'s/zookeeper_nodes/${Zookeeper_Nodes}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
-				 echo $?
+				 sed -i \'s/BROKER_NODES/${Broker_Nodes}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
 				'''
             }
         }
+        stage('Setting Zookeeper Nodes') {
+            steps {
+                sh '''
+				 sed -i \'s/ZOOKEEPER_NODES/${Zookeeper_Nodes}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
+				'''
+            }
+        }
+        stage('Setting Topic') {
+            steps {
+                sh '''
+				 sed -i \'s/TOPIC_NAME/${Topic}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
+				'''
+            }
+        }
+        stage('Setting Threads') {
+            steps {
+                sh '''
+				 sed -i \'s/THREAD_NUM/${Duration}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
+				'''
+            }
+        }		
+        stage('Setting Test Duration') {
+            steps {
+                sh '''
+				 sed -i \'s/TIMER_S/${Duration}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
+				'''
+            }
+        }		
         stage('Executing Jmeter Test') {
             steps {
                 sh '''
 				 time /opt/jmeter/bin/jmeter.sh -n -t /opt/jmeter/jmeter_kafka_files/TH_APP_th-cef_1.7_9092_3.2_GZIP_TIME.jmx
-				 echo $?
 				'''
             }
         }		
