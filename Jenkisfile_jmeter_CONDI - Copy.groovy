@@ -21,7 +21,7 @@ pipeline {
         string(
 		name: 'Zookeeper_Nodes', 
 		defaultValue: '15.214.', 
-		description: '<h4>Zookeeper nodes ip separated by comma, ussualy the zookeeper nodes are the same as the kafka broker nodes, e.g 15.214.x.x, 15.214.x.x, 15.214.x.x, 15.214.x.x</h4>'
+		description: '<h4>Kafka Broker nodes ip separated by comma, e.g 15.214.x.x, 15.214.x.x, 15.214.x.x, 15.214.x.x</h4>'
 		)
         string(
 		name: 'Topic', 
