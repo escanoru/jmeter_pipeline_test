@@ -8,7 +8,7 @@ setDescription()
 // Functions
 def jmeter_command() {
     sh '''
-	/opt/jmeter/bin/jmeter.sh -n -t ${WORKSPACE}/jmeter_kafka_files/TH_APP_th-cef_1.7_9092_3.2_GZIP_TIME.jmx
+	/opt/jmeter/bin/jmeter.sh -n -t ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
 	'''
 }
 
