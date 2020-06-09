@@ -47,7 +47,6 @@ pipeline {
 				 sed -i \'s/BROKER_NODES/${Broker_Nodes}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
 				 sed -i \'s/ZOOKEEPER_NODES/${Zookeeper_Nodes}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
 				 sed -i \'s/TOPIC_NAME/${Topic}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
-				 sed -i \'s/TIMER_S/${Duration}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
 				'''
             }
         }		
