@@ -36,7 +36,7 @@ pipeline {
         choice(
 		name: 'Instances',
 		choices: ['1', '2', '3', '4'],
-		description: '<h4>1 thread generates around 25k</h4>'
+		description: '<h4>Each instancegenerate around 25k (This depens on the host where the task is executed)</h4>'
 		)	
     }
 	
