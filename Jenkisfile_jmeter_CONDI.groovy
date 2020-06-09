@@ -85,6 +85,17 @@ pipeline {
                 }
             }
         }
+        stage('Executing Jmeter Test') {
+            when {
+                // Only say hello if a "greeting" is requested
+                expression { params.Instances == '2' }
+            }		
+            steps {
+			  script {
+                    parallel(jmeter_instances_2)
+                }
+            }
+        }		
     }
 	
     post {
