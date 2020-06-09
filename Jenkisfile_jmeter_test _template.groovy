@@ -41,16 +41,10 @@ pipeline {
     }
 	
     stages {
-        stage('Setting Broker Nodes') {
+        stage('Setting Nodes') {
             steps {
                 sh '''
 				 sed -i \'s/BROKER_NODES/${Broker_Nodes}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
-				'''
-            }
-        }
-        stage('Setting Zookeeper Nodes') {
-            steps {
-                sh '''
 				 sed -i \'s/ZOOKEEPER_NODES/${Zookeeper_Nodes}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
 				'''
             }
@@ -72,7 +66,7 @@ pipeline {
         stage('Setting Duration Test') {
             steps {
                 sh '''
-				 sed -i \'s/TIMER_S/${Duration}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
+				 sed -i \'s/TIMER_S/${Threads}/\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
 				'''
             }
         }		
