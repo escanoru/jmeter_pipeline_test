@@ -31,10 +31,11 @@ pipeline {
     }
 	
     stages {
-        stage('Executing Jmeter Test') {
+        stage('Configuring jmeter_kafka Template File') {
             steps {
                 sh '''
-				 time /opt/jmeter/bin/jmeter.sh -n -t /opt/jmeter/jmeter_kafka_files/TH_APP_th-cef_1.7_9092_3.2_GZIP_TIME.jmx
+				 sed -i \'/${Broker_Nodes}/broker_nodes\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
+				 sed -i \'/${Zookeeper_Nodes}/zookeeper_nodes\' ${WORKSPACE}/jmeter_kafka_template_single_1.8_KB_message.jmx
 				 echo $?
 				'''
             }
