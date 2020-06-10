@@ -14,16 +14,16 @@ def jmeter_command() {
 }
 
 jmeter_instances_1 = [
-    "task1": {
+    "Single Instance": {
         jmeter_command()
     }
 ]
 
 jmeter_instances_2 = [
-    "task1": {
+    "Multiple Instances - 1": {
         jmeter_command()
     },
-	"task2": {
+	"Multiple Instances - 2": {
         jmeter_command()
     }
 ]
