@@ -89,6 +89,7 @@ pipeline {
     }
 	
     stages {
+	
         stage('Setting Parameters') {
             steps {
                 sh '''
